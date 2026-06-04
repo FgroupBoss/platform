@@ -1,0 +1,26 @@
+# 生产/集成模式：连接 MySQL
+spring:
+  application:
+    name: family-edu
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 210MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:family_edu}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+      encoding: UTF-8
+
+mybatis-plus:
+  db-type: MYSQL
+
+app:
+  tts:
+    enabled: true

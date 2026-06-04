@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: standalone
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+app:
+  storage:
+    local-path: ./uploads
+  upload:
+    max-audio-size: 20971520
+    max-video-size: 209715200
+    max-image-size: 5242880
+  jwt:
+    secret: family-edu-dev-secret-change-in-production-min-32-chars
+    expire-hours: 24
+  cors:
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173
+  admin:
+    default-username: admin
+    default-password: admin123
+  tts:
+    enabled: false
+    provider: edge
+    voice: zh-CN-XiaoxiaoNeural
+    rate: +0%
+    timeout-sec: 60
+
+logging:
+  config: classpath:log4j2.xml

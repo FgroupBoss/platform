@@ -1,0 +1,29 @@
+# 联调模式：无需 MySQL / Redis / MinIO，H2 内存库 + 本地文件
+spring:
+  application:
+    name: family-edu
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 210MB
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:family_edu;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: false
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema-h2.sql
+      data-locations: classpath:db/data-h2.sql
+      encoding: UTF-8
+
+mybatis-plus:
+  db-type: H2
+
+app:
+  tts:
+    enabled: true
